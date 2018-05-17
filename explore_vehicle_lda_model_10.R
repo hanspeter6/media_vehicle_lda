@@ -38,21 +38,21 @@ fact_10_scores <- readRDS("/Users/HansPeter/Dropbox/Statistics/UCTDataScience/Th
 fact_12_scores <- readRDS("/Users/HansPeter/Dropbox/Statistics/UCTDataScience/Thesis/amps_2012/fact_12_scores.rds")
 fact_14_scores <- readRDS("/Users/HansPeter/Dropbox/Statistics/UCTDataScience/Thesis/amps_2014/fact_14_scores.rds")
 
-# scores with _08 as factor model
-fact_02_scores_model_08 <- predict(fact_08, data = set02_min[,(which(names(set02_min) == "all") + 1):ncol(set02_min)])
-# fact_05_scores_model_08 <- predict(fact_08, data = set05_min[,(which(names(set05_min) == "all") + 1):ncol(set05_min)])
-fact_08_scores_model_08 <- predict(fact_08, data = set08_min[,(which(names(set08_min) == "all") + 1):ncol(set08_min)])
-fact_10_scores_model_08 <- predict(fact_08, data = set10_min[,(which(names(set10_min) == "all") + 1):ncol(set10_min)])
-fact_12_scores_model_08 <- predict(fact_08, data = set12_min[,(which(names(set12_min) == "all") + 1):ncol(set12_min)])
-fact_14_scores_model_08 <- predict(fact_08, data = set14_min[,(which(names(set14_min) == "all") + 1):ncol(set14_min)])
+# scores with _10 as factor model
+fact_02_scores_model_10 <- predict(fact_10, data = set02_min[,(which(names(set02_min) == "all") + 1):ncol(set02_min)])
+# fact_05_scores_model_10 <- predict(fact_08, data = set05_min[,(which(names(set05_min) == "all") + 1):ncol(set05_min)])
+fact_08_scores_model_10 <- predict(fact_10, data = set08_min[,(which(names(set08_min) == "all") + 1):ncol(set08_min)])
+fact_10_scores_model_10 <- predict(fact_10, data = set10_min[,(which(names(set10_min) == "all") + 1):ncol(set10_min)])
+fact_12_scores_model_10 <- predict(fact_10, data = set12_min[,(which(names(set12_min) == "all") + 1):ncol(set12_min)])
+fact_14_scores_model_10 <- predict(fact_10, data = set14_min[,(which(names(set14_min) == "all") + 1):ncol(set14_min)])
 
 # next create dataset with scaled factors/dimensions instead of media vehicles
-set02_factors_model_08 <- data.frame(cbind(set02_min[1:19], scale(fact_02_scores_model_08)))
-# set05_factors_model_08 <- data.frame(cbind(set05_min[1:19], scale(fact_05_scores_model_08)))
-set08_factors_model_08 <- data.frame(cbind(set08_min[1:21], scale(fact_08_scores_model_08)))
-set10_factors_model_08 <- data.frame(cbind(set10_min[1:21], scale(fact_10_scores_model_08)))
-set12_factors_model_08 <- data.frame(cbind(set12_min[1:21], scale(fact_12_scores_model_08)))
-set14_factors_model_08 <- data.frame(cbind(set14_min[1:21], scale(fact_14_scores_model_08)))
+set02_factors_model_10 <- data.frame(cbind(set02_min[1:19], scale(fact_02_scores_model_10)))
+# set05_factors_model_10 <- data.frame(cbind(set05_min[1:19], scale(fact_05_scores_model_10)))
+set08_factors_model_10 <- data.frame(cbind(set08_min[1:21], scale(fact_08_scores_model_10)))
+set10_factors_model_10 <- data.frame(cbind(set10_min[1:21], scale(fact_10_scores_model_10)))
+set12_factors_model_10 <- data.frame(cbind(set12_min[1:21], scale(fact_12_scores_model_10)))
+set14_factors_model_10 <- data.frame(cbind(set14_min[1:21], scale(fact_14_scores_model_10)))
 
 # function to create frames
 frames_factors <- function(set, category) {
@@ -104,21 +104,21 @@ frame_bind_factor <- function(set, year) {
         
 }
 
-factor_fr_02_model_08 <- frame_bind_factor(set02_factors_model_08, 2002)
-# factor_fr_05_model_08<- frame_bind_factor(set05_factors_model_08, 2005)
-factor_fr_08_model_08<- frame_bind_factor(set08_factors_model_08, 2008)
-factor_fr_10_model_08<- frame_bind_factor(set10_factors_model_08, 2010)
-factor_fr_12_model_08 <- frame_bind_factor(set12_factors_model_08, 2012)
-factor_fr_14_model_08 <- frame_bind_factor(set14_factors_model_08, 2014)
+factor_fr_02_model_10 <- frame_bind_factor(set02_factors_model_10, 2002)
+# factor_fr_05_model_10<- frame_bind_factor(set05_factors_model_10, 2005)
+factor_fr_08_model_10<- frame_bind_factor(set08_factors_model_10, 2008)
+factor_fr_10_model_10<- frame_bind_factor(set10_factors_model_10, 2010)
+factor_fr_12_model_10 <- frame_bind_factor(set12_factors_model_10, 2012)
+factor_fr_14_model_10 <- frame_bind_factor(set14_factors_model_10, 2014)
 
 
 # putting them togther:
-frame_factors_model_08 <- rbind.data.frame(factor_fr_02_model_08,
-                                           # factor_fr_05_model_08,
-                                           factor_fr_08_model_08,
-                                           factor_fr_10_model_08,
-                                           factor_fr_12_model_08,
-                                           factor_fr_14_model_08)
+frame_factors_model_10 <- rbind.data.frame(factor_fr_02_model_10,
+                                           # factor_fr_05_model_10,
+                                           factor_fr_08_model_10,
+                                           factor_fr_10_model_10,
+                                           factor_fr_12_model_10,
+                                           factor_fr_14_model_10)
 
 
 # EXPLORING
@@ -126,12 +126,12 @@ frame_factors_model_08 <- rbind.data.frame(factor_fr_02_model_08,
 # defining a function
 all_plots_factors <- function(data, title = "All Factors") {
         ggplot(data = data, title = title) +
-                geom_line(aes(year, F1, group = category, colour = "F1")) +
-                geom_line(aes(year, F2, group = category, colour = "F2")) +
-                geom_line(aes(year, F3, group = category, colour = "F3")) +
-                geom_line(aes(year, F4, group = category, colour = "F4")) +
-                geom_line(aes(year, F5, group = category, colour = "F5")) +
-                geom_line(aes(year, F6, group = category, colour = "F6")) +
+                geom_line(aes(year, F1, group = category, colour = "F1: Social")) +
+                geom_line(aes(year, F2, group = category, colour = "F2: Free TV")) +
+                geom_line(aes(year, F3, group = category, colour = "F3: Afrikaans")) +
+                geom_line(aes(year, F4, group = category, colour = "F4: Soccer")) +
+                geom_line(aes(year, F5, group = category, colour = "F5: Intelligentsia")) +
+                geom_line(aes(year, F6, group = category, colour = "F6: Mainstream Print")) +
                 scale_colour_discrete(name="Factors") +
                 facet_grid(. ~ category) +
                 theme(axis.text.x = element_text(size = 6)) +
@@ -141,11 +141,11 @@ all_plots_factors <- function(data, title = "All Factors") {
 
 vector_row1 <- c("male", "female","15-24","25-44", "45-54","55+","black", "coloured", "indian", "white")
 vector_row2 <- c("<matric", "matric",">matric", "<R2500","R2500-R6999","R7000-R11999",">=R12000", "LSM1-2", "LSM3-4", "LSM5-6", "LSM7-8", "LSM9-10")
-p_up_model_08 <- all_plots_factors(frame_factors_model_08[which(frame_factors_model_08$category %in% vector_row1),])
-p_down_model_08 <- all_plots_factors(frame_factors_model_08[which(frame_factors_model_08$category %in% vector_row2),])
+p_up_model_10 <- all_plots_factors(frame_factors_model_10[which(frame_factors_model_10$category %in% vector_row1),])
+p_down_model_10 <- all_plots_factors(frame_factors_model_10[which(frame_factors_model_10$category %in% vector_row2),])
 
-jpeg("all_plots_factors_model_08.jpeg", quality = 100)
-grid.arrange(p_up_model_08, p_down_model_08, nrow = 2)
+jpeg("all_plots_factors_model_10.jpeg", quality = 100)
+grid.arrange(p_up_model_10, p_down_model_10, nrow = 2)
 dev.off()
 
 # function to plot details with error bars: factor per category:
@@ -236,81 +236,81 @@ plot_factor_by_category <- function(data, factor, category) {# category: one of 
                 labs(y = d, title = e)
 }
 
-p_f1_age_model_08 <- plot_factor_by_category(frame_factors_model_08, "F1", "age") # etc..any combination...
-p_f2_income_model_08 <- plot_factor_by_category(frame_factors_model_08, "F2", "income") # etc..any combination...
-p_f3_race_model_08 <- plot_factor_by_category(frame_factors_model_08, "F3", "race")
-p_f5_lsm_model_08 <- plot_factor_by_category(frame_factors_model_08, "F5", "lsm")
-p_f6_age_model_08 <- plot_factor_by_category(frame_factors_model_08, "F6", "age")
-p_f1_edu_model_08 <- plot_factor_by_category(frame_factors_model_08, "F1", "education")
+p_f1_age_model_10 <- plot_factor_by_category(frame_factors_model_10, "F1", "age") # etc..any combination...
+p_f2_income_model_10 <- plot_factor_by_category(frame_factors_model_10, "F2", "income") # etc..any combination...
+p_f3_race_model_10 <- plot_factor_by_category(frame_factors_model_10, "F3", "race")
+p_f5_lsm_model_10 <- plot_factor_by_category(frame_factors_model_10, "F5", "lsm")
+p_f6_age_model_10 <- plot_factor_by_category(frame_factors_model_10, "F6", "age")
+p_f1_edu_model_10 <- plot_factor_by_category(frame_factors_model_10, "F1", "education")
 
-jpeg("factors_category_model_08.jpeg", quality = 100)
-grid.arrange(p_f1_age_model_08,
-             p_f2_income_model_08,
-             p_f3_race_model_08,
-             p_f5_lsm_model_08,
-             p_f6_age_model_08,
-             p_f1_edu_model_08, nrow = 3)
+jpeg("factors_category_model_10.jpeg", quality = 100)
+grid.arrange(p_f1_age_model_10,
+             p_f2_income_model_10,
+             p_f3_race_model_10,
+             p_f5_lsm_model_10,
+             p_f6_age_model_10,
+             p_f1_edu_model_10, nrow = 3)
 dev.off()
 
 # MODELING
 
 ## FACTOR 1 (free tv)
-f1_grouped_model_08 <- groupedData(F1 ~ year | category, data = frame_factors_model_08)
-# plot(f1_grouped_model_08) # check
-f1_list_model_08 <- lmList(F1 ~ I(year - mean(year)) | category, data = f1_grouped_model_08)
-# plot(intervals(f1_list_model_08))
-f1_lme_model_08 <- lme(f1_list_model_08)
-# summary(f1_lme_model_08)
+f1_grouped_model_10 <- groupedData(F1 ~ year | category, data = frame_factors_model_10)
+# plot(f1_grouped_model_10) # check
+f1_list_model_10 <- lmList(F1 ~ I(year - mean(year)) | category, data = f1_grouped_model_10)
+# plot(intervals(f1_list_model_10))
+f1_lme_model_10 <- lme(f1_list_model_10)
+# summary(f1_lme_model_10)
 
 ## FACTOR 2 (multi media main stream)
-f2_grouped_model_08 <- groupedData(F2 ~ year | category, data = frame_factors_model_08)
-# plot(f2_grouped_model_08) # check
-f2_list_model_08 <- lmList(F2 ~ I(year - mean(year)) | category, data = f2_grouped_model_08)
-# plot(intervals(f2_list_model_08))
-f2_lme_model_08 <- lme(f2_list_model_08)
-# summary(f2_lme_model_08)
+f2_grouped_model_10 <- groupedData(F2 ~ year | category, data = frame_factors_model_10)
+# plot(f2_grouped_model_10) # check
+f2_list_model_10 <- lmList(F2 ~ I(year - mean(year)) | category, data = f2_grouped_model_10)
+# plot(intervals(f2_list_model_10))
+f2_lme_model_10 <- lme(f2_list_model_10)
+# summary(f2_lme_model_10)
 
 ## FACTOR 3 (afrikaans)
-f3_grouped_model_08 <- groupedData(F3 ~ year | category, data = frame_factors_model_08)
-# plot(f3_grouped_model_08) # check
-f3_list_model_08 <- lmList(F3 ~ I(year - mean(year)) | category, data = f3_grouped_model_08)
-# plot(intervals(f3_list_model_08))
-f3_lme_model_08 <- lme(f3_list_model_08)
-# summary(f3_lme_model_08)
+f3_grouped_model_10 <- groupedData(F3 ~ year | category, data = frame_factors_model_10)
+# plot(f3_grouped_model_10) # check
+f3_list_model_10 <- lmList(F3 ~ I(year - mean(year)) | category, data = f3_grouped_model_10)
+# plot(intervals(f3_list_model_10))
+f3_lme_model_10 <- lme(f3_list_model_10)
+# summary(f3_lme_model_10)
 
 ## FACTOR 4 (african)
-f4_grouped_model_08 <- groupedData(F4 ~ year | category, data = frame_factors_model_08)
-# plot(f4_grouped_model_08) # check
-f4_list_model_08 <- lmList(F4 ~ I(year - mean(year)) | category, data = f4_grouped_model_08)
-# plot(intervals(f4_list_model_08))
-f4_lme_model_08 <- lme(f4_list_model_08)
-# summary(f4_lme_model_08)
+f4_grouped_model_10 <- groupedData(F4 ~ year | category, data = frame_factors_model_10)
+# plot(f4_grouped_model_10) # check
+f4_list_model_10 <- lmList(F4 ~ I(year - mean(year)) | category, data = f4_grouped_model_10)
+# plot(intervals(f4_list_model_10))
+f4_lme_model_10 <- lme(f4_list_model_10)
+# summary(f4_lme_model_10)
 
 ## FACTOR 5 (african)
-f5_grouped_model_08 <- groupedData(F5 ~ year | category, data = frame_factors_model_08)
-# plot(f5_grouped_model_08) # check
-f5_list_model_08 <- lmList(F5 ~ I(year - mean(year)) | category, data = f5_grouped_model_08)
-# plot(intervals(f5_list_model_08))
-f5_lme_model_08 <- lme(f5_list_model_08)
-# summary(f5_lme_model_08)
+f5_grouped_model_10 <- groupedData(F5 ~ year | category, data = frame_factors_model_10)
+# plot(f5_grouped_model_10) # check
+f5_list_model_10 <- lmList(F5 ~ I(year - mean(year)) | category, data = f5_grouped_model_10)
+# plot(intervals(f5_list_model_10))
+f5_lme_model_10 <- lme(f5_list_model_10)
+# summary(f5_lme_model_10)
 
 ## FACTOR 6 (popular)
-f6_grouped_model_08 <- groupedData(F6 ~ year | category, data = frame_factors_model_08)
-# plot(f6_grouped_model_08) # check
-f6_list_model_08 <- lmList(F6 ~ I(year - mean(year)) | category, data = f6_grouped_model_08)
-# plot(intervals(f6_list_model_08))
-f6_lme_model_08 <- lme(f6_list_model_08)
-# summary(f6_lme_model_08)
+f6_grouped_model_10 <- groupedData(F6 ~ year | category, data = frame_factors_model_10)
+# plot(f6_grouped_model_10) # check
+f6_list_model_10 <- lmList(F6 ~ I(year - mean(year)) | category, data = f6_grouped_model_10)
+# plot(intervals(f6_list_model_10))
+f6_lme_model_10 <- lme(f6_list_model_10)
+# summary(f6_lme_model_10)
 
 # Own plots of Factors and Categories with Fitted Values
 # add model predicted values to data frame
-frame_factor_preds_model_08 <- frame_factors_model_08 %>%
-        mutate(preds_f1 = as.vector(fitted(f1_lme_model_08))) %>%
-        mutate(preds_f2 = as.vector(fitted(f2_lme_model_08))) %>%
-        mutate(preds_f3 = as.vector(fitted(f3_lme_model_08))) %>%
-        mutate(preds_f4 = as.vector(fitted(f4_lme_model_08))) %>%
-        mutate(preds_f5 = as.vector(fitted(f5_lme_model_08))) %>%
-        mutate(preds_f6 = as.vector(fitted(f6_lme_model_08)))
+frame_factor_preds_model_10 <- frame_factors_model_10 %>%
+        mutate(preds_f1 = as.vector(fitted(f1_lme_model_10))) %>%
+        mutate(preds_f2 = as.vector(fitted(f2_lme_model_10))) %>%
+        mutate(preds_f3 = as.vector(fitted(f3_lme_model_10))) %>%
+        mutate(preds_f4 = as.vector(fitted(f4_lme_model_10))) %>%
+        mutate(preds_f5 = as.vector(fitted(f5_lme_model_10))) %>%
+        mutate(preds_f6 = as.vector(fitted(f6_lme_model_10)))
 
 # function for plotting fitted models
 plot_fitted_factors <- function(data, factor) { # factor:one of: F1, F2, F3, F4, F5, F6
@@ -320,48 +320,48 @@ plot_fitted_factors <- function(data, factor) { # factor:one of: F1, F2, F3, F4,
                 b <- "preds_f1"
                 c <- "up_f1"
                 d <- "low_f1"
-                e <- "factor 1"
-                f <- "Factor 1 with Fitted Values"
+                e <- "factor 1: Social"
+                f <- "Factor 1 (Social) with Fitted Values"
         }
         if(factor == "F2") {
                 a <- "F2"
                 b <- "preds_f2"
                 c <- "up_f2"
                 d <- "low_f2"
-                e <- "factor 2"
-                f <- "Factor 2 with Fitted Values"
+                e <- "factor 2: Free TV"
+                f <- "Factor 2 (Free TV) with Fitted Values"
         }
         if(factor == "F3") {
                 a <- "F3"
                 b <- "preds_f3"
                 c <- "up_f3"
                 d <- "low_f3"
-                e <- "factor 3"
-                f <- "Factor 3 with Fitted Values"
+                e <- "factor 3: Afrikaans"
+                f <- "Factor 3 (Afrikaans) with Fitted Values"
         }
         if(factor == "F4") {
                 a <- "F4"
                 b <- "preds_f4"
                 c <- "up_f4"
                 d <- "low_f4"
-                e <- "factor 4"
-                f <- "Factor 4 with Fitted Values"
+                e <- "factor 4: African Soccer"
+                f <- "Factor 4 (African Soccer) with Fitted Values"
         }
         if(factor == "F5") {
                 a <- "F5"
                 b <- "preds_f5"
                 c <- "up_f5"
                 d <- "low_f5"
-                e <- "factor 5"
-                f <- "Factor 5 with Fitted Values"
+                e <- "factor 5: Intelligentsia"
+                f <- "Factor 5 (Intelligentsia) with Fitted Values"
         }
         if(factor == "F6") {
                 a <- "F6"
                 b <- "preds_f6"
                 c <- "up_f6"
                 d <- "low_f6"
-                e <- "factor 6"
-                f <- "Factor 6 with Fitted Values"
+                e <- "factor 6: Main Stream Print"
+                f <- "Factor 6 (Main Stream Print) with Fitted Values"
         }
         
         #plot
@@ -376,55 +376,55 @@ plot_fitted_factors <- function(data, factor) { # factor:one of: F1, F2, F3, F4,
 }
 
 ## F1
-pf1_up_model_08 <- plot_fitted_factors(data = frame_factor_preds_model_08[which(frame_factor_preds_model_08$category %in% vector_row1),],
+pf1_up_model_10 <- plot_fitted_factors(data = frame_factor_preds_model_10[which(frame_factor_preds_model_10$category %in% vector_row1),],
                                        factor = "F1")
-pf1_down_model_08 <- plot_fitted_factors(data = frame_factor_preds_model_08[which(frame_factor_preds_model_08$category %in% vector_row2),],
+pf1_down_model_10 <- plot_fitted_factors(data = frame_factor_preds_model_10[which(frame_factor_preds_model_10$category %in% vector_row2),],
                                          factor = "F1")
-jpeg("f1_fitted_model_08.jpeg", quality = 100)
-grid.arrange(pf1_up_model_08, pf1_down_model_08, nrow = 2)
+jpeg("f1_fitted_model_10.jpeg", quality = 100)
+grid.arrange(pf1_up_model_10, pf1_down_model_10, nrow = 2)
 dev.off()
 
 ## F2
-pf2_up_model_08 <- plot_fitted_factors(data = frame_factor_preds_model_08[which(frame_factor_preds_model_08$category %in% vector_row1),],
+pf2_up_model_10 <- plot_fitted_factors(data = frame_factor_preds_model_10[which(frame_factor_preds_model_10$category %in% vector_row1),],
                                        factor = "F2")
-pf2_down_model_08 <- plot_fitted_factors(data = frame_factor_preds_model_08[which(frame_factor_preds_model_08$category %in% vector_row2),],
+pf2_down_model_10 <- plot_fitted_factors(data = frame_factor_preds_model_10[which(frame_factor_preds_model_10$category %in% vector_row2),],
                                          factor = "F2")
-jpeg("f2_fitted_model_08.jpeg", quality = 100)
-grid.arrange(pf2_up_model_08, pf2_down_model_08, nrow = 2)
+jpeg("f2_fitted_model_10.jpeg", quality = 100)
+grid.arrange(pf2_up_model_10, pf2_down_model_10, nrow = 2)
 dev.off()
 
 ## F3
-pf3_up_model_08 <- plot_fitted_factors(data = frame_factor_preds_model_08[which(frame_factor_preds_model_08$category %in% vector_row1),],
+pf3_up_model_10 <- plot_fitted_factors(data = frame_factor_preds_model_10[which(frame_factor_preds_model_10$category %in% vector_row1),],
                                        factor = "F3")
-pf3_down_model_08 <- plot_fitted_factors(data = frame_factor_preds_model_08[which(frame_factor_preds_model_08$category %in% vector_row2),],
+pf3_down_model_10 <- plot_fitted_factors(data = frame_factor_preds_model_10[which(frame_factor_preds_model_10$category %in% vector_row2),],
                                          factor = "F3")
-jpeg("f3_fitted_model_08.jpeg", quality = 100)
-grid.arrange(pf3_up_model_08, pf3_down_model_08, nrow = 2)
+jpeg("f3_fitted_model_10.jpeg", quality = 100)
+grid.arrange(pf3_up_model_10, pf3_down_model_10, nrow = 2)
 dev.off()
 
 ## F4
-pf4_up_model_08 <- plot_fitted_factors(data = frame_factor_preds_model_08[which(frame_factor_preds_model_08$category %in% vector_row1),],
+pf4_up_model_10 <- plot_fitted_factors(data = frame_factor_preds_model_10[which(frame_factor_preds_model_10$category %in% vector_row1),],
                                        factor = "F4")
-pf4_down_model_08 <- plot_fitted_factors(data = frame_factor_preds_model_08[which(frame_factor_preds_model_08$category %in% vector_row2),],
+pf4_down_model_10 <- plot_fitted_factors(data = frame_factor_preds_model_10[which(frame_factor_preds_model_10$category %in% vector_row2),],
                                          factor = "F4")
-jpeg("f4_fitted_model_08.jpeg", quality = 100)
-grid.arrange(pf4_up_model_08, pf4_down_model_08, nrow = 2)
+jpeg("f4_fitted_model_10.jpeg", quality = 100)
+grid.arrange(pf4_up_model_10, pf4_down_model_10, nrow = 2)
 dev.off()
 
 ## F5
-pf5_up_model_08 <- plot_fitted_factors(data = frame_factor_preds_model_08[which(frame_factor_preds_model_08$category %in% vector_row1),],
+pf5_up_model_10 <- plot_fitted_factors(data = frame_factor_preds_model_10[which(frame_factor_preds_model_10$category %in% vector_row1),],
                                        factor = "F5")
-pf5_down_model_08 <- plot_fitted_factors(data = frame_factor_preds_model_08[which(frame_factor_preds_model_08$category %in% vector_row2),],
+pf5_down_model_10 <- plot_fitted_factors(data = frame_factor_preds_model_10[which(frame_factor_preds_model_10$category %in% vector_row2),],
                                          factor = "F5")
-jpeg("f5_fitted_model_08.jpeg", quality = 100)
-grid.arrange(pf5_up_model_08, pf5_down_model_08, nrow = 2)
+jpeg("f5_fitted_model_10.jpeg", quality = 100)
+grid.arrange(pf5_up_model_10, pf5_down_model_10, nrow = 2)
 dev.off()
 
 ## F6
-pf6_up_model_08 <- plot_fitted_factors(data = frame_factor_preds_model_08[which(frame_factor_preds_model_08$category %in% vector_row1),],
+pf6_up_model_10 <- plot_fitted_factors(data = frame_factor_preds_model_10[which(frame_factor_preds_model_10$category %in% vector_row1),],
                                        factor = "F6")
-pf6_down_model_08 <- plot_fitted_factors(data = frame_factor_preds_model_08[which(frame_factor_preds_model_08$category %in% vector_row2),],
+pf6_down_model_10 <- plot_fitted_factors(data = frame_factor_preds_model_10[which(frame_factor_preds_model_10$category %in% vector_row2),],
                                          factor = "F6")
-jpeg("f6_fitted_model_08.jpeg", quality = 100)
-grid.arrange(pf6_up_model_08, pf6_down_model_08, nrow = 2)
+jpeg("f6_fitted_model_10.jpeg", quality = 100)
+grid.arrange(pf6_up_model_10, pf6_down_model_10, nrow = 2)
 dev.off()

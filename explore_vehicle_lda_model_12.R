@@ -320,48 +320,48 @@ plot_fitted_factors <- function(data, factor) { # factor:one of: F1, F2, F3, F4,
                 b <- "preds_f1"
                 c <- "up_f1"
                 d <- "low_f1"
-                e <- "factor 1: free tv"
-                f <- "Factor 1 (free tv) with Fitted Values"
+                e <- "factor 1"
+                f <- "Factor 1 with Fitted Values"
         }
         if(factor == "F2") {
                 a <- "F2"
                 b <- "preds_f2"
                 c <- "up_f2"
                 d <- "low_f2"
-                e <- "factor 2: multi media main stream"
-                f <- "Factor 2 (multi media main stream) with Fitted Values"
+                e <- "factor 2"
+                f <- "Factor 2 with Fitted Values"
         }
         if(factor == "F3") {
                 a <- "F3"
                 b <- "preds_f3"
                 c <- "up_f3"
                 d <- "low_f3"
-                e <- "factor 3: afrikaans"
-                f <- "Factor 3 (afrikaans) with Fitted Values"
+                e <- "factor 3"
+                f <- "Factor 3 with Fitted Values"
         }
         if(factor == "F4") {
                 a <- "F4"
                 b <- "preds_f4"
                 c <- "up_f4"
                 d <- "low_f4"
-                e <- "factor 4: soccer"
-                f <- "Factor 4 (soccer) with Fitted Values"
+                e <- "factor 4"
+                f <- "Factor 4 with Fitted Values"
         }
         if(factor == "F5") {
                 a <- "F5"
                 b <- "preds_f5"
                 c <- "up_f5"
                 d <- "low_f5"
-                e <- "factor 5: african"
-                f <- "Factor 5 (african) with Fitted Values"
+                e <- "factor 5"
+                f <- "Factor 5 with Fitted Values"
         }
         if(factor == "F6") {
                 a <- "F6"
                 b <- "preds_f6"
                 c <- "up_f6"
                 d <- "low_f6"
-                e <- "factor 6: popular"
-                f <- "Factor 6 (popular) with Fitted Values"
+                e <- "factor 6"
+                f <- "Factor 6 with Fitted Values"
         }
         
         #plot
