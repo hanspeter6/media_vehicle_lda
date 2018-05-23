@@ -69,24 +69,27 @@ frames_factors <- function(set, category) {
         
         set %>%
                 group_by_(category = category) %>%
-                summarise(F1 = mean(PA1),
-                          F2 = mean(PA2),
-                          F3 = mean(PA3),
-                          F4 = mean(PA4),
-                          F5 = mean(PA5),
-                          F6 = mean(PA6),
-                          up_f1 = mean(PA1) + (2 * sd(PA1)/sqrt(length(PA1))),
-                          low_f1 = mean(PA1) - (2 * sd(PA1)/sqrt(length(PA1))),
-                          up_f2 = mean(PA2) + (2 * sd(PA2)/sqrt(length(PA2))),
-                          low_f2 = mean(PA2) - (2 * sd(PA2)/sqrt(length(PA2))),
-                          up_f3 = mean(PA3) + (2 * sd(PA3)/sqrt(length(PA3))),
-                          low_f3 = mean(PA3) - (2 * sd(PA3)/sqrt(length(PA3))),
-                          up_f4 = mean(PA4) + (2 * sd(PA4)/sqrt(length(PA4))),
-                          low_f4 = mean(PA4) - (2 * sd(PA4)/sqrt(length(PA4))),
-                          up_f5 = mean(PA5) + (2 * sd(PA5)/sqrt(length(PA5))),
-                          low_f5 = mean(PA5) - (2 * sd(PA5)/sqrt(length(PA5))),
-                          up_f6 = mean(PA6) + (2 * sd(PA6)/sqrt(length(PA6))),
-                          low_f6 = mean(PA6) - (2 * sd(PA6)/sqrt(length(PA6))))
+                summarise(F1 = mean(ML1),
+                          F2 = mean(ML2),
+                          F3 = mean(ML3),
+                          F4 = mean(ML4),
+                          F5 = mean(ML5),
+                          F6 = mean(ML6),
+                          F7 = mean(ML7),
+                          up_f1 = mean(ML1) + (2 * sd(ML1)/sqrt(length(ML1))),
+                          low_f1 = mean(ML1) - (2 * sd(ML1)/sqrt(length(ML1))),
+                          up_f2 = mean(ML2) + (2 * sd(ML2)/sqrt(length(ML2))),
+                          low_f2 = mean(ML2) - (2 * sd(ML2)/sqrt(length(ML2))),
+                          up_f3 = mean(ML3) + (2 * sd(ML3)/sqrt(length(ML3))),
+                          low_f3 = mean(ML3) - (2 * sd(ML3)/sqrt(length(ML3))),
+                          up_f4 = mean(ML4) + (2 * sd(ML4)/sqrt(length(ML4))),
+                          low_f4 = mean(ML4) - (2 * sd(ML4)/sqrt(length(ML4))),
+                          up_f5 = mean(ML5) + (2 * sd(ML5)/sqrt(length(ML5))),
+                          low_f5 = mean(ML5) - (2 * sd(ML5)/sqrt(length(ML5))),
+                          up_f6 = mean(ML6) + (2 * sd(ML6)/sqrt(length(ML6))),
+                          low_f6 = mean(ML6) - (2 * sd(ML6)/sqrt(length(ML6))),
+                          up_f7 = mean(ML7) + (2 * sd(ML7)/sqrt(length(ML7))),
+                          low_f7 = mean(ML7) - (2 * sd(ML7)/sqrt(length(ML7))))
         
 }
 
@@ -130,8 +133,9 @@ all_plots_factors <- function(data, title = "All Factors") {
                 geom_line(aes(year, F2, group = category, colour = "F2: Free TV")) +
                 geom_line(aes(year, F3, group = category, colour = "F3: Afrikaans")) +
                 geom_line(aes(year, F4, group = category, colour = "F4: Soccer")) +
-                geom_line(aes(year, F5, group = category, colour = "F5: Intelligentsia")) +
-                geom_line(aes(year, F6, group = category, colour = "F6: Mainstream Print")) +
+                geom_line(aes(year, F5, group = category, colour = "F5: News")) +
+                geom_line(aes(year, F6, group = category, colour = "F6: African")) +
+                geom_line(aes(year, F7, group = category, colour = "F7: PopPrint")) +
                 scale_colour_discrete(name="Factors") +
                 facet_grid(. ~ category) +
                 theme(axis.text.x = element_text(size = 6)) +
@@ -150,7 +154,7 @@ dev.off()
 
 # function to plot details with error bars: factor per category:
 plot_factor_by_category <- function(data, factor, category) {# category: one of age, race, income, sex, education, lsm, cluster
-        # factor: one of: F1, F2, F3, F4, F5, F6
+        # factor: one of: F1, F2, F3, F4, F5, F6, F7
         age_levels <- c("15-24","25-44", "45-54","55+" )
         race_levels <- c("black", "coloured", "indian", "white")
         inc_levels <- c("<R2500","R2500-R6999","R7000-R11999",">=R12000")
@@ -189,42 +193,49 @@ plot_factor_by_category <- function(data, factor, category) {# category: one of 
                 b <- "low_f1"
                 c <- "up_f1"
                 d <- "factor 1"
-                e <- paste("Factor 1 and ", category)
+                e <- paste("Social and ", category)
         }
         if(factor == "F2") {
                 a <- "F2"
                 b <- "low_f2"
                 c <- "up_f2"
                 d <- "factor 2"
-                e <- paste("Factor 2 and ", category)
+                e <- paste("FreeTV and ", category)
         }
         if(factor == "F3") {
                 a <- "F3"
                 b <- "low_f3"
                 c <- "up_f3"
                 d <- "factor 3"
-                e <- paste("Factor 3 and ", category)
+                e <- paste("Afrikaans and ", category)
         }
         if(factor == "F4") {
                 a <- "F4"
                 b <- "low_f4"
                 c <- "up_f4"
                 d <- "factor 4"
-                e <- paste("Factor 4 and ", category)
+                e <- paste("Soccer and ", category)
         }
         if(factor == "F5") {
                 a <- "F5"
                 b <- "low_f5"
                 c <- "up_f5"
                 d <- "factor 5"
-                e <- paste("Factor 5 and ", category)
+                e <- paste("News and ", category)
         }
         if(factor == "F6") {
                 a <- "F6"
                 b <- "low_f6"
                 c <- "up_f6"
                 d <- "factor 6"
-                e <- paste("Factor 6 and ", category)
+                e <- paste("African and ", category)
+        }
+        if(factor == "F7") {
+                a <- "F7"
+                b <- "low_f7"
+                c <- "up_f7"
+                d <- "factor 7"
+                e <- paste("PopPrint and ", category)
         }
         
         
@@ -241,7 +252,7 @@ p_f2_income_model_10 <- plot_factor_by_category(frame_factors_model_10, "F2", "i
 p_f3_race_model_10 <- plot_factor_by_category(frame_factors_model_10, "F3", "race")
 p_f5_lsm_model_10 <- plot_factor_by_category(frame_factors_model_10, "F5", "lsm")
 p_f6_age_model_10 <- plot_factor_by_category(frame_factors_model_10, "F6", "age")
-p_f1_edu_model_10 <- plot_factor_by_category(frame_factors_model_10, "F1", "education")
+p_f1_edu_model_10 <- plot_factor_by_category(frame_factors_model_10, "F7", "education")
 
 jpeg("factors_category_model_10.jpeg", quality = 100)
 grid.arrange(p_f1_age_model_10,
@@ -254,7 +265,7 @@ dev.off()
 
 # MODELING
 
-## FACTOR 1 (free tv)
+## FACTOR 1 (social)
 f1_grouped_model_10 <- groupedData(F1 ~ year | category, data = frame_factors_model_10)
 # plot(f1_grouped_model_10) # check
 f1_list_model_10 <- lmList(F1 ~ I(year - mean(year)) | category, data = f1_grouped_model_10)
@@ -262,7 +273,7 @@ f1_list_model_10 <- lmList(F1 ~ I(year - mean(year)) | category, data = f1_group
 f1_lme_model_10 <- lme(f1_list_model_10)
 # summary(f1_lme_model_10)
 
-## FACTOR 2 (multi media main stream)
+## FACTOR 2 (freeTV)
 f2_grouped_model_10 <- groupedData(F2 ~ year | category, data = frame_factors_model_10)
 # plot(f2_grouped_model_10) # check
 f2_list_model_10 <- lmList(F2 ~ I(year - mean(year)) | category, data = f2_grouped_model_10)
@@ -278,7 +289,7 @@ f3_list_model_10 <- lmList(F3 ~ I(year - mean(year)) | category, data = f3_group
 f3_lme_model_10 <- lme(f3_list_model_10)
 # summary(f3_lme_model_10)
 
-## FACTOR 4 (african)
+## FACTOR 4 (soccer)
 f4_grouped_model_10 <- groupedData(F4 ~ year | category, data = frame_factors_model_10)
 # plot(f4_grouped_model_10) # check
 f4_list_model_10 <- lmList(F4 ~ I(year - mean(year)) | category, data = f4_grouped_model_10)
@@ -286,7 +297,7 @@ f4_list_model_10 <- lmList(F4 ~ I(year - mean(year)) | category, data = f4_group
 f4_lme_model_10 <- lme(f4_list_model_10)
 # summary(f4_lme_model_10)
 
-## FACTOR 5 (african)
+## FACTOR 5 (news)
 f5_grouped_model_10 <- groupedData(F5 ~ year | category, data = frame_factors_model_10)
 # plot(f5_grouped_model_10) # check
 f5_list_model_10 <- lmList(F5 ~ I(year - mean(year)) | category, data = f5_grouped_model_10)
@@ -294,13 +305,22 @@ f5_list_model_10 <- lmList(F5 ~ I(year - mean(year)) | category, data = f5_group
 f5_lme_model_10 <- lme(f5_list_model_10)
 # summary(f5_lme_model_10)
 
-## FACTOR 6 (popular)
+## FACTOR 6 (african)
 f6_grouped_model_10 <- groupedData(F6 ~ year | category, data = frame_factors_model_10)
 # plot(f6_grouped_model_10) # check
 f6_list_model_10 <- lmList(F6 ~ I(year - mean(year)) | category, data = f6_grouped_model_10)
 # plot(intervals(f6_list_model_10))
 f6_lme_model_10 <- lme(f6_list_model_10)
 # summary(f6_lme_model_10)
+
+## FACTOR 7 (popPrint)
+f7_grouped_model_10 <- groupedData(F7 ~ year | category, data = frame_factors_model_10)
+# plot(f7_grouped_model_10) # check
+f7_list_model_10 <- lmList(F7 ~ I(year - mean(year)) | category, data = f7_grouped_model_10)
+# plot(intervals(f7_list_model_10))
+f7_lme_model_10 <- lme(f7_list_model_10)
+# summary(f7_lme_model_10)
+
 
 # Own plots of Factors and Categories with Fitted Values
 # add model predicted values to data frame
@@ -310,10 +330,11 @@ frame_factor_preds_model_10 <- frame_factors_model_10 %>%
         mutate(preds_f3 = as.vector(fitted(f3_lme_model_10))) %>%
         mutate(preds_f4 = as.vector(fitted(f4_lme_model_10))) %>%
         mutate(preds_f5 = as.vector(fitted(f5_lme_model_10))) %>%
-        mutate(preds_f6 = as.vector(fitted(f6_lme_model_10)))
+        mutate(preds_f6 = as.vector(fitted(f6_lme_model_10))) %>%
+        mutate(preds_f7 = as.vector(fitted(f7_lme_model_10)))
 
 # function for plotting fitted models
-plot_fitted_factors <- function(data, factor) { # factor:one of: F1, F2, F3, F4, F5, F6
+plot_fitted_factors <- function(data, factor) { # factor:one of: F1, F2, F3, F4, F5, F6, F7
         
         if(factor == "F1") {
                 a <- "F1"
@@ -321,7 +342,7 @@ plot_fitted_factors <- function(data, factor) { # factor:one of: F1, F2, F3, F4,
                 c <- "up_f1"
                 d <- "low_f1"
                 e <- "factor 1: Social"
-                f <- "Factor 1 (Social) with Fitted Values"
+                f <- "Social with Fitted Values"
         }
         if(factor == "F2") {
                 a <- "F2"
@@ -329,7 +350,7 @@ plot_fitted_factors <- function(data, factor) { # factor:one of: F1, F2, F3, F4,
                 c <- "up_f2"
                 d <- "low_f2"
                 e <- "factor 2: Free TV"
-                f <- "Factor 2 (Free TV) with Fitted Values"
+                f <- "Free TV with Fitted Values"
         }
         if(factor == "F3") {
                 a <- "F3"
@@ -337,31 +358,39 @@ plot_fitted_factors <- function(data, factor) { # factor:one of: F1, F2, F3, F4,
                 c <- "up_f3"
                 d <- "low_f3"
                 e <- "factor 3: Afrikaans"
-                f <- "Factor 3 (Afrikaans) with Fitted Values"
+                f <- "Afrikaans with Fitted Values"
         }
         if(factor == "F4") {
                 a <- "F4"
                 b <- "preds_f4"
                 c <- "up_f4"
                 d <- "low_f4"
-                e <- "factor 4: African Soccer"
-                f <- "Factor 4 (African Soccer) with Fitted Values"
+                e <- "factor 4: Soccer"
+                f <- "Soccer with Fitted Values"
         }
         if(factor == "F5") {
                 a <- "F5"
                 b <- "preds_f5"
                 c <- "up_f5"
                 d <- "low_f5"
-                e <- "factor 5: Intelligentsia"
-                f <- "Factor 5 (Intelligentsia) with Fitted Values"
+                e <- "factor 5: News"
+                f <- "News with Fitted Values"
         }
         if(factor == "F6") {
                 a <- "F6"
                 b <- "preds_f6"
                 c <- "up_f6"
                 d <- "low_f6"
-                e <- "factor 6: Main Stream Print"
-                f <- "Factor 6 (Main Stream Print) with Fitted Values"
+                e <- "factor 6: African"
+                f <- "African with Fitted Values"
+        }
+        if(factor == "F7") {
+                a <- "F7"
+                b <- "preds_f7"
+                c <- "up_f7"
+                d <- "low_f7"
+                e <- "factor 7: popPrint"
+                f <- "PopPrint with Fitted Values"
         }
         
         #plot
@@ -427,4 +456,13 @@ pf6_down_model_10 <- plot_fitted_factors(data = frame_factor_preds_model_10[whic
                                          factor = "F6")
 jpeg("f6_fitted_model_10.jpeg", quality = 100)
 grid.arrange(pf6_up_model_10, pf6_down_model_10, nrow = 2)
+dev.off()
+
+## F7
+pf7_up_model_10 <- plot_fitted_factors(data = frame_factor_preds_model_10[which(frame_factor_preds_model_10$category %in% vector_row1),],
+                                       factor = "F7")
+pf7_down_model_10 <- plot_fitted_factors(data = frame_factor_preds_model_10[which(frame_factor_preds_model_10$category %in% vector_row2),],
+                                         factor = "F7")
+jpeg("f7_fitted_model_10.jpeg", quality = 100)
+grid.arrange(pf7_up_model_10, pf7_down_model_10, nrow = 2)
 dev.off()
